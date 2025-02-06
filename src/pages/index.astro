@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Profile from '../components/Profile';
+import Scene3D from '../components/Scene3D';
+import BlogList from '../components/BlogList';
+import Projects from '../components/Projects';
+import Contact from '../components/Contact';
+import Skills from '../components/Skills';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Your Portfolio">
+  <main class="h-screen bg-gray-100">
+    <!-- Grid container with responsive layout -->
+    <div class="h-full grid grid-cols-1 md:grid-cols-3 grid-rows-[auto] md:grid-rows-2 gap-0">
+      
+
+      <!-- Profile Section - Second on mobile, Top Left on desktop -->
+      <div class="border p-6 overflow-hidden order-2 md:order-1">
+        <h1 class="text-xs mb-5">日本語</h1>
+        <Profile />
+      </div>
+
+      <!-- 3D Object Section - Full width on mobile, Top Right on desktop -->
+      <div class="border overflow-hidden order-1 md:order-1">
+        <Scene3D client:load />
+      </div>
+
+      <div class="border p-6 overflow-hidden order-3 md:order-1">
+        <Skills />
+      </div>
+
+      
+      
+
+      <!-- Blog List Section - Third on mobile, Bottom Left on desktop -->
+      <div class="border p-6 overflow-auto order-4">
+        <BlogList />
+      </div>
+
+      <!-- Projects Section - Fourth on mobile, Bottom Middle on desktop -->
+      <div class="border p-6 overflow-auto order-5">
+        <Projects />
+      </div>
+
+      <!-- Contact Section - Last on mobile, Bottom Right on desktop -->
+      <div class="border p-6 overflow-auto order-6">
+        <Contact />
+      </div>
+    </div>
+  </main>
 </Layout>
