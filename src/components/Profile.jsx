@@ -1,3 +1,4 @@
+
 export default function Profile() {
     return (
       <div className="h-full flex flex-col justify-start">
@@ -7,11 +8,14 @@ export default function Profile() {
         a Junior Programmer and Digital Artist who`s all about design,
         </p>
         <div className="flex gap-4 text-xs">
-          <a href="https://linkedin.com" className="text-gray-900 hover:text-gray-500">
+          <a href="https://github.com/klawcodes" className="text-gray-900 hover:text-gray-500">
             Github
           </a>
-          <a href="https://linkedin.com" className="text-gray-900 hover:text-gray-500">
+          <a href="https://x.com/RIOTREVENGER" className="text-gray-900 hover:text-gray-500">
             X / Twitter
+          </a>
+          <a href="https://instagram.com/riotrevenger" className="text-gray-900 hover:text-gray-500">
+            Instagram
           </a>
         </div>
       </div>

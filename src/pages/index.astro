@@ -2,49 +2,51 @@
 import Layout from "../layouts/Layout.astro";
 import Profile from "../components/Profile";
 import Scene3D from "../components/Scene3D";
-import BlogList from "../components/BlogList";
+import BlogList from "./blog/index.astro";
 import Projects from "../components/Projects";
 import Contact from "../components/Contact";
 import Skills from "../components/Skills";
 
+import { LanguageProvider } from "../components/languageProvider";
+import LanguageToggle from "../components/languageToggle";
 ---
 
-<Layout title="This is Not a Portfolio (or is it?)">
+<Layout title="This is Not a Portfolio (or is it?) | klaw">
   <main class="h-screen bg-gray-100">
     <!-- Grid container with responsive layout -->
-    <div
-      class="h-full grid grid-cols-1 md:grid-cols-3 grid-rows-[auto] md:grid-rows-2 gap-0"
-    >
-      <!-- Profile Section - Second on mobile, Top Left on desktop -->
-      <div class="p-6 overflow-hidden order-2 md:order-1">
-        <h1 class="text-xs mb-5">日本語</h1>
-        <div class="border"></div>
-        <Profile />
-      </div>
+      <div
+        class="h-full grid grid-cols-1 md:grid-cols-3 grid-rows-[auto] md:grid-rows-2 gap-0"
+      >
+        <!-- Profile Section - Second on mobile, Top Left on desktop -->
+        <div class="p-6 overflow-hidden order-2 md:order-1">
+          <LanguageToggle client:load />
+          <div class="border"></div>
+          <Profile />
+        </div>
 
-      <!-- 3D Object Section - Full width on mobile, Top Right on desktop -->
-      <div class="border overflow-hidden order-1 md:order-1">
-        <Scene3D client:load />
-      </div>
+        <!-- 3D Object Section - Full width on mobile, Top Right on desktop -->
+        <div class="border overflow-hidden order-1 md:order-1">
+          <Scene3D client:load />
+        </div>
 
-      <div class="border p-6 overflow-hidden order-3 md:order-1">
-        <Skills />
-      </div>
+        <div class="border p-6 overflow-hidden order-3 md:order-1">
+          <Skills />
+        </div>
 
-      <!-- Blog List Section - Third on mobile, Bottom Left on desktop -->
-      <div class="border p-6 overflow-auto order-4">
-        <BlogList />
-      </div>
+        <!-- Blog List Section - Third on mobile, Bottom Left on desktop -->
+        <div class="border p-6 overflow-auto order-4">
+          <BlogList />
+        </div>
 
-      <!-- Projects Section - Fourth on mobile, Bottom Middle on desktop -->
-      <div class="border p-6 overflow-auto order-5">
-        <Projects />
-      </div>
+        <!-- Projects Section - Fourth on mobile, Bottom Middle on desktop -->
+        <div class="border p-6 overflow-auto order-5">
+          <Projects />
+        </div>
 
-      <!-- Contact Section - Last on mobile, Bottom Right on desktop -->
-      <div class="border p-6 overflow-auto order-6">
-        <Contact client:load />
+        <!-- Contact Section - Last on mobile, Bottom Right on desktop -->
+        <div class="border p-6 overflow-auto order-6">
+          <Contact client:load />
+        </div>
       </div>
-    </div>
   </main>
 </Layout>

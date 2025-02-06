@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+---
+
+<html>
+<body>
+  <div class="h-full">
+    <h2 class="text-xl font-bold mb-4">Latest Posts</h2>
+    <div class="space-y-1 text-xs">
+      {sortedPosts.map((post) => (
+        <a 
+          href={`/blog/${post.slug}`} 
+          class="block p-4 border rounded hover:bg-gray-50"
+        >
+          <h3 class="font-medium">{post.data.title}</h3>
+          <p class="text-sm text-gray-500">
+            {post.data.pubDate.toLocaleDateString()}
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</body>
+</html>
