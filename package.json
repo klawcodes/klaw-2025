@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",
-    "@types/react": "^19.0.8",
     "@astrojs/tailwind": "^5.1.0",
+    "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "astro": "^5.2.5",
     "react": "^19.0.0",
