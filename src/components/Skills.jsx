@@ -1,7 +1,7 @@
 export default function Skills() {
   return (
     <div className="h-full flex flex-col justify-start">
-      <h1 className="text-xl font-bold mb-5">Tech Stack \ 2021 - 2025</h1>
+      <h1 className="text-xl font-bold mb-5">Technologies <span className="text-xs">(over the year)</span></h1>
       <div className="grid grid-cols-4 gap-x-1 gap-y-5">
         <div className="image-container w-10 h-auto">
           <img

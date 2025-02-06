@@ -1,8 +1,8 @@
 export default function Projects() {
   const projects = [
-    { title: "Awas Imsak!", tech: "Next JS, React, Node.js" },
-    { title: "Republik Rempah", tech: "Laravel, Vite" },
+    { title: "Republik Rempah", tech: "Laravel, Livewire" },
     { title: "DonasiKita", tech: "CodeIgniter" },
+    { title: "Awas Imsak!", tech: "Next JS, React, Node.js" },
     { title: "Capres Facts", tech: "HTML, JavaSript, Vanilla CSS" },
   ];
 
