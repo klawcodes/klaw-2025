@@ -7,7 +7,8 @@ const TypewriterEffect = () => {
   
   const phrases = [
     "Welcome to klaw's website! 👋",
-    "Feel free to look around..."
+    "Feel free to look around...",
+    "fyi, this website is still under construction"
   ];
 
   useEffect(() => {
