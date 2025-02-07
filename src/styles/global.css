@@ -8,6 +8,12 @@
     font-display: swap; /* Tambahkan ini untuk optimasi loading */
 }
 
+@font-face {
+    font-family: 'tnr';
+    src: url('/fonts/TimesNewerRoman-Regular.ttf'); /* Gunakan path absolut dari root */
+    font-display: swap; /* Tambahkan ini untuk optimasi loading */
+}
+
 html,
 body,
 main {

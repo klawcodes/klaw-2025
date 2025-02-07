@@ -12,41 +12,41 @@ import LanguageToggle from "../components/languageToggle";
 ---
 
 <Layout title="This is Not a Portfolio (or is it?) | klaw">
-  <main class="h-screen bg-gray-100">
-    <!-- Grid container with responsive layout -->
-      <div
-        class="h-full grid grid-cols-1 md:grid-cols-3 grid-rows-[auto] md:grid-rows-2 gap-0"
-      >
-        <!-- Profile Section - Second on mobile, Top Left on desktop -->
-        <div class="p-6 overflow-hidden order-2 md:order-1">
-          <LanguageToggle client:load />
-          <div class="border"></div>
-          <Profile client:load />
-        </div>
-
-        <!-- 3D Object Section - Full width on mobile, Top Right on desktop -->
-        <div class="border overflow-hidden order-1 md:order-1">
-          <Scene3D client:load />
-        </div>
-
-        <div class="border p-6 overflow-hidden order-3 md:order-1">
-          <Skills client:load />
-        </div>
-
-        <!-- Blog List Section - Third on mobile, Bottom Left on desktop -->
-        <div class="border p-6 overflow-auto order-4">
-          <BlogList />
-        </div>
-
-        <!-- Projects Section - Fourth on mobile, Bottom Middle on desktop -->
-        <div class="border p-6 overflow-auto order-5">
-          <Projects />
-        </div>
-
-        <!-- Contact Section - Last on mobile, Bottom Right on desktop -->
-        <div class="border p-6 overflow-auto order-6">
-          <Contact client:load />
-        </div>
+  <main class="min-h-screen bg-gray-100 flex flex-col">
+    {/* Grid container with responsive layout */}
+    <div
+      class="h-full grid grid-cols-1 md:grid-cols-3 grid-rows-[auto] md:grid-rows-2 gap-2 md:gap-0 md:h-screen"
+    >
+      {/* Profile Section - Second on mobile, Top Left on desktop */}
+      <div class="p-6 overflow-hidden order-2 md:order-1 md:w-full md:max-h-full md:mx-auto">
+        <LanguageToggle client:load />
+        <div class="border"></div>
+        <Profile client:load />
       </div>
+      
+      {/* 3D Object Section - Full width on mobile, Top Right on desktop */}
+      <div class="border overflow-hidden order-1 md:order-1 md:w-full md:max-h-full md:mx-auto">
+        <Scene3D client:load />
+      </div>
+      
+      <div class="border p-6 overflow-hidden order-3 md:order-1 md:w-full md:max-h-full md:mx-auto">
+        <Skills client:load />
+      </div>
+      
+      {/* Blog List Section - Third on mobile, Bottom Left on desktop */}
+      <div class="border p-6 overflow-auto order-4 md:w-full md:max-h-full md:mx-auto">
+        <BlogList />
+      </div>
+      
+      {/* Projects Section - Fourth on mobile, Bottom Middle on desktop */}
+      <div class="border p-6 overflow-auto order-5 md:w-full md:max-h-full md:mx-auto">
+        <Projects />
+      </div>
+      
+      {/* Contact Section - Last on mobile, Bottom Right on desktop */}
+      <div class="border p-6 overflow-auto order-6 md:w-full md:max-h-full md:mx-auto">
+        <Contact client:load />
+      </div>
+    </div>
   </main>
-</Layout>
+  </Layout>
