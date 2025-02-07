@@ -7,4 +7,12 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   integrations: [react(), tailwind(), mdx()],  // Dan perubahan ini
+
+  vite: {
+    resolve: {
+      alias: {
+        '@styles': '/src/styles'
+      }
+    }
+  }
 });

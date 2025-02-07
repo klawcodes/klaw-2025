@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
   return posts.map((post) => ({
@@ -7,34 +9,26 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
+
 const { post } = Astro.props;
 const { Content } = await post.render();
-import '../../styles/global.css';
 ---
 
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{post.data.title} | klaw</title>
-</head>
-<body class="bg-gray-100 text-gray-900">
+<Layout title={`${post.data.title} | klaw`}>
   <div class="max-w-2xl mx-auto px-4 py-8">
     <header class="mb-8">
       <a href="/" class="text-gray-600 hover:text-gray-900 mb-4 inline-block">← back</a>
       <h1 class="text-4xl font-bold mb-2">{post.data.title}</h1>
       <div class="text-gray-500">
-        Published on {new Date(post.data.pubDate).toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
+        Published on {new Date(post.data.pubDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
         })}
       </div>
     </header>
-    
     <article class="prose prose-lg">
       <Content />
     </article>
   </div>
-</body>
-</html>
+</Layout>
