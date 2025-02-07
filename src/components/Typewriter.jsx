@@ -26,7 +26,7 @@ const TypewriterEffect = () => {
         setText('');
         setCurrentIndex(0);
         setCurrentPhrase(prev => prev + 1);
-      }, 5000);
+      }, 2000);
       
       return () => clearTimeout(timeout);
     }

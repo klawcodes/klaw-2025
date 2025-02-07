@@ -2,10 +2,10 @@ export default function Contact() {
   return (
     <div className="h-full w-full flex flex-col justify-end items-end">
       <div className="text-end mb-10">
-        <h2 className="text-xl font-bold mb-4">
+        <h2 className="text-lg font-bold mb-4">
           I would love to hear from you. Let's work together
         </h2>
-        <a href="mailto:hi@klaw.my.id" className="text-gray-900 hover:text-gray-500">
+        <a href="mailto:hi@klaw.my.id" className="text-gray-900 hover:text-gray-100 select text-xs">
           hi@klaw.my.id
         </a>
       </div>

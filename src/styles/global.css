@@ -13,3 +13,17 @@ body,
 main {
     font-family: 'berkeley', monospace; /* Tambahkan fallback font */
 }
+
+.select {
+  height: 0;
+}
+
+.select:hover {
+  display: inline-block;
+  color: #fffab7;
+  height: 15px;
+  width: auto;
+  background-color: #111111;
+  transition: color .25s ease-in-out, box-shadow .3s ease-in-out;
+  transition: height .25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
