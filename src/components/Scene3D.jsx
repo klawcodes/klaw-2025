@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import TypewriterEffect from "../components/Typewriter";
+import { motion } from "framer-motion";
 
 export default function Scene3D() {
   const mountRef = useRef(null);
@@ -38,23 +39,11 @@ export default function Scene3D() {
     directionalLight.position.set(2, 2, 2);
     scene.add(directionalLight);
 
-    // Grid Helper
-    //const size = 10;
-    //const divisions = 10;
-    //const gridHelper = new THREE.GridHelper(size, divisions);
-    //scene.add(gridHelper);
-
-    // Axes Helper
-    //const axesHelper = new THREE.AxesHelper(5);
-    //scene.add(axesHelper);
-
     // Global mouse movement handler
     const handleMouseMove = (event) => {
-      // Calculate mouse position relative to window size
       mousePosition.current.x = (event.clientX / window.innerWidth) * 2 - 1;
       mousePosition.current.y = (event.clientY / window.innerHeight) * 2 - 1;
 
-      // Direct (non-reversed) movement mapping
       targetRotation.current.x = mousePosition.current.y * Math.PI * 0.5;
       targetRotation.current.y = -mousePosition.current.x * Math.PI * 0.5;
     };
@@ -96,13 +85,11 @@ export default function Scene3D() {
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Smooth camera movement
       currentRotation.current.x +=
         (targetRotation.current.x - currentRotation.current.x) * 0.05;
       currentRotation.current.y +=
         (targetRotation.current.y - currentRotation.current.y) * 0.05;
 
-      // Update camera position with direct movement
       const radius = 3;
       camera.position.x = radius * Math.sin(currentRotation.current.y);
       camera.position.z = radius * Math.cos(currentRotation.current.y);
@@ -122,7 +109,6 @@ export default function Scene3D() {
       renderer.setSize(width, height);
     };
 
-    // Add event listeners to window instead of canvas
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", handleResize);
 
@@ -133,11 +119,32 @@ export default function Scene3D() {
     };
   }, []);
 
+  const containerVariants = {
+    initial: {
+      opacity: 0,
+      y: 50
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1.5,
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
     <div className="relative w-full h-full min-h-[400px]">
-      <div ref={mountRef} className="w-full h-full"></div>
+      <motion.div 
+        ref={mountRef} 
+        className="w-full h-full"
+        variants={containerVariants}
+        initial="initial"
+        animate="animate"
+      ></motion.div>
       <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-lg text-xs font-bold text-center transition-all duration-300">
-      <TypewriterEffect />
+        <TypewriterEffect />
       </div>
     </div>
   );
