@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'berkeley';
-  src: url('/fonts/BerkeleyMonoTrial-Regular.ttf');  /* Gunakan path absolut dari root */
-  font-display: swap; /* Tambahkan ini untuk optimasi loading */
+    font-family: 'berkeley';
+    src: url('/fonts/BerkeleyMonoTrial-Regular.ttf'); /* Gunakan path absolut dari root */
+    font-display: swap; /* Tambahkan ini untuk optimasi loading */
 }
 
-html {
-  font-family: 'berkeley', monospace; /* Tambahkan fallback font */
+html,
+body,
+main {
+    font-family: 'berkeley', monospace; /* Tambahkan fallback font */
 }

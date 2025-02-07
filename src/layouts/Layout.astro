@@ -1,14 +1,10 @@
 ---
 interface Props {
-  title: string;
+  title?: string;
 }
-
-const { title } = Astro.props;
+const { title = 'klaw' } = Astro.props;
 import '@styles/global.css'
-
-import berkeleyFont from '/fonts/BerkeleyMonoTrial-Regular.ttf';
 ---
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
@@ -17,19 +13,15 @@ import berkeleyFont from '/fonts/BerkeleyMonoTrial-Regular.ttf';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <style define:vars={{ berkeleyFont: `url(${berkeleyFont})` }}>
+    <style>
       @font-face {
         font-family: 'berkeley';
-        src: var(--berkeleyFont);
+        src: url('/fonts/BerkeleyMonoTrial-Regular.ttf') format('truetype');
         font-display: swap;
-      }
-    
-      html {
-        font-family: 'berkeley', monospace;
       }
     </style>
   </head>
-  <body>
+  <body style="font-family: 'berkeley', monospace;">
     <slot />
   </body>
 </html>
