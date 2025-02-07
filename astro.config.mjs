@@ -13,6 +13,10 @@ export default defineConfig({
       alias: {
         '@styles': '/src/styles'
       }
-    }
-  }
+    },
+    build: {
+      assetsInlineLimit: 0, // Ini akan memastikan font tidak di-inline
+    },
+  },
+  
 });
