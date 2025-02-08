@@ -4,24 +4,28 @@ import { useRandomFlicker } from "../hooks/useRandomFlicker";
 import { useEntranceAnimation } from "../hooks/useEntranceAnimation";
 import { useTextTransition } from "../hooks/useTextTransition";
 
-export default function FeaturedWorks({ projects }) {
+export default function BlogList({ posts }) {
   const { generateEntranceVariants, containerVariants } = useEntranceAnimation();
-  const showEnglish = useTextTransition(4); // 4 detik delay
+  const showEnglish = useTextTransition(4);
 
   // Text content untuk judul
   const textContent = {
     title: {
-      japanese: "作品集",
-      english: "Featured Works"
+      japanese: "最新の投稿",
+      english: "Latest Posts"
     }
   };
 
-  // Sort all projects first
-  const allSortedProjects = [...projects].sort((a, b) => b.data.order - a.data.order);
-  // Then slice for display
-  const displayedProjects = allSortedProjects.slice(0, 4);
-  // Check total number of projects
-  const hasMoreProjects = allSortedProjects.length > 4;
+  // Sort posts by date
+  const sortedPosts = [...posts].sort(
+    (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  );
+
+  // Slice for display
+  const displayedBlog = sortedPosts.slice(0, 4);
+  
+  // Check if has more posts
+  const hasMoreBlog = sortedPosts.length > 4;
 
   return (
     <motion.div 
@@ -47,29 +51,31 @@ export default function FeaturedWorks({ projects }) {
       </motion.h2>
 
       <motion.div 
-        className="grid gap-1 text-sm"
+        className="space-y-1 text-sm"
         variants={generateEntranceVariants(1)}
       >
-        {displayedProjects.map((project, index) => (
+        {displayedBlog.map((post, index) => (
           <motion.a
-            key={project.slug}
-            href={`/projects/${project.slug}`}
-            className="px-4 py-1 border rounded hover:bg-gray-50"
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className="block px-4 py-1 border rounded hover:bg-gray-50"
             variants={generateEntranceVariants(index + 2, {
               distance: 30,
               duration: 0.4,
             })}
           >
-            <h3 className="font-medium">{project.data.title}</h3>
-            <p className="text-xs text-gray-500">{project.data.tech}</p>
+            <h3 className="font-medium">{post.data.title}</h3>
+            <p className="text-xs text-gray-500">
+              {post.data.pubDate.toLocaleDateString()}
+            </p>
           </motion.a>
         ))}
         
-        {hasMoreProjects && (
+        {hasMoreBlog && (
           <motion.a
-            href="/projects"
-            className="px-4 py-1 border rounded hover:bg-gray-50 text-center"
-            variants={generateEntranceVariants(displayedProjects.length + 2)}
+            href="/blog"
+            className="block px-4 py-1 border rounded hover:bg-gray-50 text-center"
+            variants={generateEntranceVariants(displayedBlog.length + 2)}
           >
             <span className="text-gray-500">Show More</span>
           </motion.a>

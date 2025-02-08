@@ -9,6 +9,17 @@ const postsCollection = defineCollection({
   })
 });
 
+const projectsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    tech: z.string(),
+    featured: z.boolean().optional().default(false),
+    order: z.number().optional().default(99),
+  })
+});
+
 export const collections = {
-  'posts': postsCollection
+  'posts': postsCollection,
+  'projects': projectsCollection
 };

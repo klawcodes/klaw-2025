@@ -55,6 +55,10 @@ export default function Skills() {
       alt: "Astro",
     },
     {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
+      alt: "PHP",
+    },
+    {
       src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
       alt: "Laravel",
     },
