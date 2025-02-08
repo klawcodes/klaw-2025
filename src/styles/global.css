@@ -20,6 +20,11 @@ main {
     font-family: 'berkeley', monospace; /* Tambahkan fallback font */
 }
 
+::selection {
+  background: rgb(10, 10, 10);
+  color: white;
+}
+
 .select {
   height: 0;
 }
