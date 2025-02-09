@@ -2,5 +2,76 @@
 title: "Awas Imsak!"
 tech: "Next JS, TypeScript"
 featured: true
+live: "https://imsak.my.id"
+repo: "https://github.com/klawcodes/awas-imsak"
 order: 2
 ---
+import ImageGallery from '../../components/ImageGallery';
+
+Awas Imsak is a web application designed to help Muslims in Indonesia track their prayer times, with a special focus on Imsak timing during Ramadan. Built with Next.js and TypeScript, this project showcases modern web development practices while serving a practical religious purpose.
+
+## Project Screenshots
+
+<ImageGallery client:load projectId="awas-imsak"/>
+
+## Key Features
+- Real-time prayer schedule updates for all regions in Indonesia
+- Geolocation support for automatic user location detection
+- Dynamic region selection with an intuitive search interface
+- Automatic time zone adjustment (UTC+7/WIB)
+- Interactive reminders for important Ramadan activities
+- Clean and accessible UI with Islamic-inspired design elements
+- Mobile-responsive layout for on-the-go access
+
+## Technical Highlights
+- Built using Next.js for optimal performance and SEO
+- TypeScript implementation for type-safe code
+- Integration with API MUSLIM V2 by MY QURAN and developed by [Bang Hasan](https://banghasan.com) for accurate time calculations
+- Redux state management for seamless user experience
+- Particle.js animations for enhanced visual appeal
+- Custom animations using Framer Motion
+- Toast notifications for user interactions
+- Advanced UI components from NextUI library
+
+The project aims to make Ramadan scheduling easier for Indonesian Muslims while demonstrating modern web development capabilities. The application combines religious functionality with technical excellence, resulting in a practical tool that serves thousands of users during Ramadan.
+
+## Development Challenges
+- Implementing accurate prayer time calculations across different regions
+- Creating a responsive and intuitive interface suitable for users of all ages
+- Managing complex state with Redux for real-time updates
+- Optimizing performance while maintaining rich visual elements
+- Ensuring accessibility across different devices and screen sizes
+
+This project showcases my ability to create practical, user-focused applications while implementing modern web technologies and maintaining clean, efficient code.
+
+
+## Dependencies
+
+```json
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@nextui-org/react": "^2.2.9",
+    "@reduxjs/toolkit": "^2.1.0",
+    "@tsparticles/engine": "^3.7.1",
+    "@tsparticles/react": "^3.0.0",
+    "aos": "^2.3.4",
+    "bmkg-wrapper": "^2.0.0",
+    "framer-motion": "^11.0.3",
+    "next": "14.1.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
+    "react-paginate": "^8.2.0",
+    "react-redux": "^9.1.0",
+    "react-select": "^5.8.0",
+    "react-textra": "^0.2.0",
+    "react-tsparticles": "^2.12.2",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
+    "slick-carousel": "^1.8.1",
+    "tsparticles": "^3.7.1"
+  }
+}

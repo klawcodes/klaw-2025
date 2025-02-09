@@ -2,5 +2,58 @@
 title: "DonasiKita"
 tech: "CodeIgniter"
 featured: true
+live: "https://donasikita.my.id"
+repo: "https://github.com/klawcodes/sisd"
 order: 3
 ---
+import ImageGallery from '../../components/ImageGallery';
+
+A community-driven donation platform created for RT.003 residents to foster a better neighborhood through mutual aid. Built with CodeIgniter as part of a final semester project, this web application demonstrates the power of transparent giving and community engagement.
+
+## Project Screenshots
+
+<ImageGallery client:load projectId="donasikita"/>
+
+## Key Features
+
+- Transparent donation tracking system
+- Easy-to-use contribution interface
+- Real-time donation statistics
+- Donor management system
+- Program progress tracking
+- Mobile-responsive design
+
+## Technical Highlights
+
+- Built using CodeIgniter PHP framework
+- Custom MVC architecture implementation
+- Database design with MySQL
+- Form validation and sanitization
+- Responsive frontend design
+- Session management
+- Word and Excel report generation
+
+## Development Challenges
+
+- Building CRUD operations from scratch for learning purposes
+- Managing database relationships effectively
+- Creating an intuitive admin dashboard
+- Implementing proper input validation
+- Ensuring data consistency across operations
+
+_Note: While developed as an academic project, the platform uses fictional location data to demonstrate real-world applications._
+
+## Dependencies
+
+```json
+{
+"require": {
+        "php": "^8.1",
+        "codeigniter4/framework": "^4.0"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9",
+        "mikey179/vfsstream": "^1.6",
+        "phpunit/phpunit": "^10.5.16"
+    },
+}
