@@ -1,13 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRandomFlicker } from "../hooks/useRandomFlicker";
 import { useEntranceAnimation } from "../hooks/useEntranceAnimation";
 import { useTextTransition } from "../hooks/useTextTransition";
 
+const BlogPostLink = ({ post, variants, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const flickerAnimation = useRandomFlicker(index, {
+    duration: 0.15,
+    repeats: 3
+  })();
+
+  return (
+    <motion.a
+      key={post.slug}
+      href={`/blog/${post.slug}`}
+      className="block px-4 py-1 border rounded hover:bg-gray-50 relative"
+      variants={variants}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="flex justify-between items-center">
+        <div>
+          <h3 className="font-medium">{post.data.title}</h3>
+          <p className="text-xs text-gray-500">
+            {post.data.pubDate.toLocaleDateString()}
+          </p>
+        </div>
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              variants={flickerAnimation}
+              className="text-gray-500"
+            >
+              <i className="fa-solid fa-arrow-right w-4 h-4"></i>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.a>
+  );
+};
+
 export default function BlogList({ posts }) {
   const { generateEntranceVariants, containerVariants } = useEntranceAnimation();
   const showEnglish = useTextTransition(4);
-
   // Text content untuk judul
   const textContent = {
     title: {
@@ -23,18 +63,17 @@ export default function BlogList({ posts }) {
 
   // Slice for display
   const displayedBlog = sortedPosts.slice(0, 4);
-  
   // Check if has more posts
   const hasMoreBlog = sortedPosts.length > 4;
 
   return (
-    <motion.div 
+    <motion.div
       className="h-full overflow-auto scrollbar-hide"
       variants={containerVariants}
       initial="initial"
       animate="animate"
     >
-      <motion.h2 
+      <motion.h2
         className="text-xl font-bold mb-4"
         variants={generateEntranceVariants(0)}
       >
@@ -49,28 +88,21 @@ export default function BlogList({ posts }) {
           </motion.span>
         </AnimatePresence>
       </motion.h2>
-
-      <motion.div 
+      <motion.div
         className="space-y-1 text-sm"
         variants={generateEntranceVariants(1)}
       >
         {displayedBlog.map((post, index) => (
-          <motion.a
+          <BlogPostLink
             key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="block px-4 py-1 border rounded hover:bg-gray-50"
+            post={post}
             variants={generateEntranceVariants(index + 2, {
               distance: 30,
               duration: 0.4,
             })}
-          >
-            <h3 className="font-medium">{post.data.title}</h3>
-            <p className="text-xs text-gray-500">
-              {post.data.pubDate.toLocaleDateString()}
-            </p>
-          </motion.a>
+            index={index}
+          />
         ))}
-        
         {hasMoreBlog && (
           <motion.a
             href="/blog"

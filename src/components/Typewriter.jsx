@@ -1,38 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-const TypewriterEffect = () => {
+export default function TypewriterEffect({ sentences = [
+  "Welcome to klaw's website! 👋",
+  "Feel free to look around...",
+  "fyi, this website still under development"
+] }) {
   const [text, setText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentPhrase, setCurrentPhrase] = useState(0);
-  
-  const phrases = [
-    "Welcome to klaw's website! 👋",
-    "Feel free to look around...",
-    "fyi, this website still under development"
-  ];
 
   useEffect(() => {
-    if (currentPhrase >= phrases.length) return;
-
-    if (currentIndex < phrases[currentPhrase].length) {
+    if (currentPhrase >= sentences.length) return;
+    
+    if (currentIndex < sentences[currentPhrase].length) {
+      // Menambahkan huruf satu per satu
       const timeout = setTimeout(() => {
-        setText(prev => prev + phrases[currentPhrase][currentIndex]);
+        setText(prev => prev + sentences[currentPhrase][currentIndex]);
         setCurrentIndex(currentIndex + 1);
       }, 100);
       
       return () => clearTimeout(timeout);
     } else {
+      // Setelah selesai mengetik satu kalimat, reset dan pindah ke kalimat berikutnya
       const timeout = setTimeout(() => {
         setText('');
         setCurrentIndex(0);
         setCurrentPhrase(prev => prev + 1);
-      }, 2000);
+      }, 1000);
       
       return () => clearTimeout(timeout);
     }
-  }, [currentIndex, currentPhrase]);
-
-  return <div>{text}</div>;
-};
-
-export default TypewriterEffect;
+  }, [currentIndex, currentPhrase, sentences]);
+  
+  // Menggunakan non-breaking space untuk mempertahankan tinggi elemen
+  return <div>{text || '\u00A0'}</div>;
+}

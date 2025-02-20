@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import TypewriterEffect from "../components/Typewriter";
@@ -9,11 +9,78 @@ export default function Scene3D() {
   const mousePosition = useRef({ x: 0, y: 0 });
   const targetRotation = useRef({ x: 0, y: 0 });
   const currentRotation = useRef({ x: 0, y: 0 });
-  const sentences = [
-    "Selamat datang di website saya! 👋",
-    "Anda dipersilahkan berkeliling...",
-    "Jangan lupa tinggalkan pesan ya! ✨",
-  ];
+  const [hoverSection, setHoverSection] = useState(null);
+  
+  // Default sentences when not hovering any specific section
+const defaultSentences = [
+  "Welcome to my website! 👋",
+  "Feel free to look around...",
+];
+
+// Section-specific sentences
+const sectionSentences = {
+  profile: [
+    "This is my profile section 🧑‍💻",
+    "I'm a web developer and visual designer",
+    "Check out more about my skills and experience",
+  ],
+  skills: [
+    "These are the skills I've mastered ⚙️",
+    "Some technologies I often use",
+    "Recent techonologies i use: Laravel, Astro JS, and Next JS",
+  ],
+  blog: [
+    "Read my latest writings 📝",
+  ],
+  projects: [
+    "These are my latest projects 🚀",
+    "Selected portfolio pieces with modern tech",
+    "Click to see project details",
+  ],
+  contact: [
+    "Let's connect and collaborate! 🤝",
+    "Feel free to leave me a message",
+    "I'm always excited to hear new ideas",
+  ],
+};
+  
+  // Get the current sentences based on hover section
+  const getCurrentSentences = () => {
+    return hoverSection ? sectionSentences[hoverSection] : defaultSentences;
+  };
+
+  // Setup global mouse tracker to detect section hovers
+  useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      // Get all grid sections
+      const profileSection = document.querySelector('[class*="order-2"]');
+      const skillsSection = document.querySelector('[class*="order-3"]');
+      const blogSection = document.querySelector('[class*="order-4"]');
+      const projectsSection = document.querySelector('[class*="order-5"]');
+      const contactSection = document.querySelector('[class*="order-6"]');
+      
+      // Check which section the mouse is over
+      if (profileSection && profileSection.contains(e.target)) {
+        setHoverSection('profile');
+      } else if (skillsSection && skillsSection.contains(e.target)) {
+        setHoverSection('skills');
+      } else if (blogSection && blogSection.contains(e.target)) {
+        setHoverSection('blog');
+      } else if (projectsSection && projectsSection.contains(e.target)) {
+        setHoverSection('projects');
+      } else if (contactSection && contactSection.contains(e.target)) {
+        setHoverSection('contact');
+      } else {
+        setHoverSection(null);
+      }
+    };
+    
+    window.addEventListener('mousemove', handleGlobalMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleGlobalMouseMove);
+    };
+  }, []);
 
   useEffect(() => {
     const currentRef = mountRef.current;
@@ -134,18 +201,52 @@ export default function Scene3D() {
     }
   };
 
+  const subtitleVariants = {
+    initial: {
+      opacity: 0,
+      y: 10,
+      scale: 0.95
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -10,
+      scale: 0.95,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn"
+      }
+    }
+  };
+
   return (
     <div className="relative w-full h-full min-h-[400px]">
-      <motion.div 
-        ref={mountRef} 
+      <motion.div
+        ref={mountRef}
         className="w-full h-full"
         variants={containerVariants}
         initial="initial"
         animate="animate"
       ></motion.div>
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-lg text-xs font-bold text-center transition-all duration-300">
-        <TypewriterEffect />
-      </div>
+      <motion.div
+        className={`absolute bottom-20 left-0 right-0 mx-auto w-fit bg-black/50 text-white px-3 py-1 rounded-lg text-xs font-bold text-center transition-all duration-300 ${
+          hoverSection ? 'bg-black/70' : 'bg-black/50'
+        }`}
+        variants={subtitleVariants}
+        initial="initial"
+        animate="animate"
+        key={hoverSection || 'default'}
+      >
+        <TypewriterEffect sentences={getCurrentSentences()} />
+      </motion.div>
     </div>
   );
 }
